@@ -1,5 +1,5 @@
 ### Configuración inicial ----
-pacman::p_load(tidyverse, scales,ggtext,
+pacman::p_load(tidyverse, scales, ggtext,
                zoo) # rolling averages
 
 ## Setup
@@ -16,7 +16,8 @@ data <- read_csv("1_data/datos_abiertos_covid19/210121COVID19MEXICO.csv")
 ### Adecuación de datos----
 
 ## Base que suma los casos diarios por entidad:
-# El truco para que el geom_area salga como en el Financial Times y no como comúnmente sería es que hasta abajo tiene que haber una observación que es equivalente a: el número máximo de fallecimientos en un día (>800) menos la suma de los fallecimientos en un día particular, entre dos. Hay que ordenar esta observación (que sería como una región) para que esté hasta abajo del geom_area y ponerle color transparente.
+# El truco para que el geom_area salga como en el Financial Times y no como comúnmente sería es que hasta abajo tiene que haber una observación que es equivalente a: el número máximo de fallecimientos en un día (>800) menos la suma de los fallecimientos en un día particular, todo eso entre dos.
+# Hay que ordenar esta observación (que sería como una región) para que esté hasta abajo del geom_area y ponerle color transparente.
 
 a = data %>% 
   filter(CLASIFICACION_FINAL %in% c(1:3),
